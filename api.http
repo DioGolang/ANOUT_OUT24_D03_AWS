@@ -1,0 +1,92 @@
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3YmNiNmYyZS0zMWFmLTQ3ODItOGMyMS0xYWZiZDYzODg5ZmUiLCJ1c2VybmFtZSI6Ik1hcmlhNSIsImVtYWlsIjoibWFyaWE1QGNvbXBhc3MuY29tLmJyIiwiaWF0IjoxNzM0MDMwOTQ3LCJleHAiOjE3MzQxMTczNDd9.7CBuX2InVK1cyK4nJQ-vQbXQAOfOV0bbV0XvZ6R2jVU
+
+
+### POST
+POST localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "maria5@compass.com.br",
+  "password": "123sdsd456sfd78"
+}
+
+### UPDATE
+PATCH http://localhost:3000/user/b04ae368-501c-45c4-ab7b-3a148656cfd8
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+{
+  "name": "Diogo"
+}
+
+
+### POST
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "name": "Maria5",
+  "email": "maria5@compass.com.br",
+  "passwordHash": "123sdsd456sfd78",
+  "status": true
+}
+
+### POST
+POST http://localhost:3000/client
+Content-Type: application/json
+
+{
+  "name": "Maria1",
+  "email": "maria1@compass.com.br",
+  "cpf": "217.654.533-11",
+  "dateOfBirth": "1990-01-01",
+  "tel": "99999-9999",
+  "status": true
+}
+
+
+### POST
+POST http://localhost:3000/order
+Content-Type: application/json
+
+{
+  "initialDate": "2024-12-05",
+  "finalDate": "2024-12-08",
+  "address": {
+    "postalCode": "02222010",
+    "gia": "Centro",
+    "city": "São Paulo",
+    "state": "SP"
+  },
+  "rentalFee": 54,
+  "totalRentalValue": 45,
+  "orderClosingDate": "2024-12-08",
+  "lateFee": 3,
+  "status": "OPEN",
+  "cars": "7e3bab97-7d9c-43bd-bb46-97459c3a6a42",
+  "clients": "d329a5ad-c19c-4a63-bec5-b55df7ecdd9d"
+}
+
+### POST CAR
+POST http://localhost:3000/cars
+Content-Type: application/json
+
+{
+  "plate": "CDR-1151",
+  "year": 2025,
+  "model": "Fusca",
+  "brand": "Volkswagen",
+  "km": 1000,
+  "dailyRate": 500,
+  "items": ["banco", "capa_de_volante", "ABS"]
+}
+
+#### GET CAR
+GET http://localhost:3000/cars?year=2025
+Content-Type: application/json
+
+###
+GET http://localhost:3000/client?name=ana1&page=1&limit=1
+Authorization: Bearer {{ token }}
+

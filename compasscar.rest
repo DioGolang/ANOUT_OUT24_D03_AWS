@@ -1,0 +1,69 @@
+### acesso via get rota padrão
+GET http://localhost:3000/
+### sempre finalizar com #
+
+### acesso via get rota /api/v1/cars
+POST http://localhost:3000/auth/login
+###
+
+### acesso via get rota /api/v1/cars? parametros
+GET http://localhost:3000/api/v1/cars?limit=2&page=1
+###
+### ?year=2017&brand=Honda&final_plate=2017&limit=2&pages=1
+
+### acesso via get rota /api/v1/cars/:id que existe
+GET http://localhost:3000/api/v1/cars/78
+# testar com 1 ou com 60,61,62
+###
+
+### acesso via get rota /api/v1/cars/:id que não existe
+GET http://localhost:3000/api/v1/cars/10
+# testar com 10, 999
+###
+
+### validando os campos antes de inserir
+POST http://localhost:3000/api/v1/cars
+Content-Type: application/json
+
+{
+    "brand": "FORD",
+    "model": "FIESTA",
+    "year": "2022",
+    "plate": "ABC1A17"    
+}
+###{
+#    "brand": "FORD",
+#    "model": "FIESTA",
+#    "year": 2020, 2014, 2026
+#    "plate": "ABC1A12",  "ABC1Z12"
+###}
+
+
+### put alteração itens
+PUT  http://localhost:3000/api/v1/cars/81/items
+Content-Type: application/json
+
+[
+    "Ar condicionado",
+    "Vidros eletricos",
+    "Trava eletrica"   
+]
+### testar com mais de 5 itens 
+#    ,"item 6"
+#    ",item 7"
+#   testar com itens repetidos 
+#    "Som digital",
+#    "SOM DIGITAL"
+###
+
+### put
+#PUT  http://localhost:3000/admin/300
+###
+
+### delete
+DELETE http://localhost:3000/api/v1/cars/81
+###
+
+### delete carro inexistente
+DELETE http://localhost:3000/api/v1/cars/74
+###
