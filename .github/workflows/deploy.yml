@@ -18,12 +18,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-      - name: Install NVM and Node.js on EC2
+      - name: Ensure NVM and Node.js are loaded
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
-            source ~/.bashrc || exit
-          
-
+            # Carregar o NVM para o shell
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" || exit
             node --version || exit
             npm --version || exit
           EOF
@@ -31,7 +31,8 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
-            source ~/.bashrc || exit
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" || exit
           
             cd /home/ubuntu/ANOUT_OUT24_D03_AWS || exit
             git pull origin main || exit
