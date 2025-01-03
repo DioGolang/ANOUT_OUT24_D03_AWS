@@ -30,6 +30,15 @@ ssh -i "sua_chave.pem" ec2-user@seu-ip-publico
 ```bash
 sudo apt update -y 
 ```
+Instalar Git
+```bash
+sudo apt install -y git
+```
+
+```bash
+sudo apt install -y postgresql postgresql-contrib
+```
+
 ```bash
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash 
 ```
@@ -56,6 +65,12 @@ sudo apt install -y nginx
 
 5. Configurar Nginx:
 
+
+Verificar novamente as regras do Security Group (AWS)
+   Type: HTTP
+   Port: 80
+   Source: 0.0.0.0/0
+
 inicie o Nginx com:
 
 ```bash
@@ -78,16 +93,21 @@ sudo nano /etc/nginx/conf.d/nestjs.conf
 
 ```nginx
 server {
-listen 80;
-server_name _; 
+    listen 80;
+    server_name _;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;  
+        proxy_pass http://127.0.0.1:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
     }
 }
 ```
@@ -101,6 +121,13 @@ Recarregar o Nginx:
 ```bash
 
 sudo systemctl reload nginx
+
+```
+
+Execute o comando novamente para confirmar:
+
+```bash
+sudo lsof -i -P -n | grep LISTEN | grep nginx
 
 ```
 

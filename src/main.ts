@@ -9,14 +9,14 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   const config = new DocumentBuilder()
-    .setTitle('Car Rental Management, PRIME NODE')
+    .setTitle('Car Rental Management, Challenges AWS')
     .setDescription(
       'This project brings the API back-end of a car rental management',
     )
     .setVersion('1.0')
     .addTag('Api Car')
     .setContact(
-      'Team: Diogo Vasconcelos, Rafael Arashiro, Marcelo Jose de Sousa, Leticia Alaide, Vitor Zoqueti',
+      'Team: Diogo Vasconcelos',
       'https://github.com/DioGolang/ANOUT24_D02_COMPASSCAR_PRIME_NODE',
       'support@example.com',
     )
