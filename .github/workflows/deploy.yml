@@ -1,4 +1,4 @@
-name: Deploy API
+name: Deploy to EC2
 
 on:
   push:
@@ -10,15 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checar o repositório
         uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Configurar SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-      - name: Build Project
-        run: npm run build
-
-      - name: Deploy to EC2
+      - name: Conectar à instância EC2 e rodar o deploy
         run: |
-          ssh -o StrictHostKeyChecking=no -i "node-api-key.pem" ubuntu@3.16.55.16 "cd /caminho/para/api && git pull && npm install && pm2 restart api"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
+            cd /home/ubuntu/ANOUT_OUT24_D03_AWS || exit
+            git pull origin main || exit
+            npm install || exit
+            npm run build || exit
+            pm2 restart api-nestjs || pm2 start dist/main.js --name "api-nestjs"
+          EOF
