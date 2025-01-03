@@ -28,7 +28,7 @@ ssh -i "sua_chave.pem" ec2-user@seu-ip-publico
 4. Instalar Dependências:
 
 ```bash
-sudo yum update -y 
+sudo apt update -y 
 ```
 ```bash
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash 
@@ -45,7 +45,13 @@ nvm install --lts
 ```
 
 ```bash
-sudo yum install -y nginx
+sudo npm i -g @nestjs/cli
+sudo npm install pm2 -g 
+```
+
+
+```bash
+sudo apt install -y nginx
 ```
 
 5. Configurar Nginx:
@@ -99,10 +105,6 @@ sudo systemctl reload nginx
 ```
 
 Passo 6: Usar PM2 ou Systemd para Gerenciar sua Aplicação Node.js
-
-```bash
-sudo npm install pm2 -g 
-```
 
 ```bash
 pm2 start dist/main.js --name nestjs-app 

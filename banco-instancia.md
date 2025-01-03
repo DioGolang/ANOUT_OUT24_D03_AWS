@@ -6,9 +6,13 @@
 
 ```bash
 sudo apt update && \
-sudo apt install -y postgresql postgresql-contrib
-
+sudo apt install -y git
 ```
+
+```bash
+sudo apt install -y postgresql postgresql-contrib 
+```
+
 Iniciar o PostgreSQL: Após a instalação, inicie o serviço PostgreSQL:
 
 ```bash
@@ -25,6 +29,7 @@ sudo systemctl enable postgresql
 serviço está ativo:
 ```bash
 sudo systemctl status postgresql
+sudo systemctl status 'postgresql*'
 ```
 
 
