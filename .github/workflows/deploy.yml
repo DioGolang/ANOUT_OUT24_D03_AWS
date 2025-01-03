@@ -10,17 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checar o repositório
+      - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Configurar SSH
+      - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-      - name: Conectar à instância EC2 e rodar o deploy
+      - name: Install NVM and Node.js on EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
+            source ~/.bashrc || exit
+          
+
+            node --version || exit
+            npm --version || exit
+          EOF
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
+            source ~/.bashrc || exit
+          
             cd /home/ubuntu/ANOUT_OUT24_D03_AWS || exit
             git pull origin main || exit
             npm install || exit
