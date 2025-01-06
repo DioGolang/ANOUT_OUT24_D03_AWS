@@ -138,3 +138,13 @@ pm2 start dist/main.js --name nestjs-app
 pm2 startup 
 pm2 save 
 ```
+
+passo 7 : Gerar o json do Swagger
+```bash
+curl -H "Accept: application/json" http://3.137.159.63/api-json -o swagger.json
+```
+converta para HTML:
+```bash
+npm install -g redoc-cli
+redoc-cli bundle swagger.json -o swagger.html
+```
