@@ -1,5 +1,5 @@
 ###
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3YmNiNmYyZS0zMWFmLTQ3ODItOGMyMS0xYWZiZDYzODg5ZmUiLCJ1c2VybmFtZSI6Ik1hcmlhNSIsImVtYWlsIjoibWFyaWE1QGNvbXBhc3MuY29tLmJyIiwiaWF0IjoxNzM0MDMwOTQ3LCJleHAiOjE3MzQxMTczNDd9.7CBuX2InVK1cyK4nJQ-vQbXQAOfOV0bbV0XvZ6R2jVU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ZGFiNTg0NC1jNzYxLTQzOGItYmZhZC05ZWJjZjAwZjJkMDMiLCJ1c2VybmFtZSI6ImpvaG5Eb2UiLCJlbWFpbCI6ImpvaG5Eb2VAY29tcGFzcy5wYi5jb20uYnIiLCJpYXQiOjE3MzYyNzM2ODcsImV4cCI6MTczNjM2MDA4N30.Ue-zN2Fj0njmlrzYiWcEhFr6IIcbRDS2hYet4po7AM8
 
 
 ### POST
@@ -12,12 +12,12 @@ Content-Type: application/json
 }
 
 ### UPDATE
-PATCH http://localhost:3000/user/b04ae368-501c-45c4-ab7b-3a148656cfd8
+PATCH http://localhost:3000/user/217501e5-9856-4fc9-aadb-db61f0f5680d
 Authorization: Bearer {{ token }}
 Content-Type: application/json
 
 {
-  "name": "Diogo"
+  "email": "maria@compass.pb.com.br"
 }
 
 
