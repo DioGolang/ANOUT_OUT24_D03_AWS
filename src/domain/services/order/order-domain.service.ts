@@ -89,7 +89,7 @@ export class OrderDomainService {
   async orderInitialDateVerification(initialDate) {
     const date = new Date();
     const zeroDate = new Date(
-      `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
     );
 
     if (!(new Date(initialDate) >= zeroDate)) {
