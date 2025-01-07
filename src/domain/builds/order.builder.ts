@@ -109,8 +109,11 @@ export class OrderBuilder {
 
   private async validateRequiredFields(): Promise<void> {
     const date = new Date();
+    // const zeroDate = new Date(
+    //   `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
+    // );
     const zeroDate = new Date(
-      `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
     );
 
     if (!this._props.initialDate) {
